@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,13 +30,18 @@ namespace poc_unity_tracer_bullet
         {
             var queue = new MessageQueue();
 
-            foreach(var message in queue.Receive())
+            _metricsPublisher.Publish("process.started");
+
+            foreach (var message in queue.Receive())
             {
-                var handler = _messageHandlerFactory.Create(tracerBullet: message.TracerBullet);
+                using (var context = OperationContext<Message>.Start(message))
+                {
+                    var handler = _messageHandlerFactory.Create();
 
                 _metricsPublisher.Publish("read.message");
 
                 handler.Handle(message);
+                }
             }
             _metricsPublisher.Publish("finished.reading.messages");
         }
