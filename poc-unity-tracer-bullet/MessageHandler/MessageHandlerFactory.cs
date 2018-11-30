@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using poc_synthetic_transaction.Core;
+
+using poc_unity_tracer_bullet.Messages;
 using poc_unity_tracer_bullet.Metrics;
 
 using Unity;
@@ -19,15 +22,17 @@ namespace poc_unity_tracer_bullet.MessageHandler
             _unityContainer = unityContainer;
         }
 
-        public IHandleMessages Create(bool tracerBullet = false)
+        public IHandleMessages Create()
         {
-            if (tracerBullet)
-                _unityContainer.RegisterType<IPublishMetrics, DontPublishMetrics>();
+            if(OperationContext<Message>.GetCurrent().TracerBullet)
+            {
+                _unityContainer.RegisterType<IPublishMetrics, NoopPublisher>();
+            }
             else
             {
-                _unityContainer.RegisterType<IPublishMetrics, DataDogMetrics>();
+                _unityContainer.RegisterType<IPublishMetrics, MetricsPublisher>();
             }
-
+            
             return _unityContainer.Resolve<IHandleMessages>();
         }
     }
