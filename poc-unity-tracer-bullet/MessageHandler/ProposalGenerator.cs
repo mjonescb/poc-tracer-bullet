@@ -21,7 +21,7 @@ namespace poc_unity_tracer_bullet.MessageHandler
 
         public void Handle(Message message)
         {
-            _metricsPublisher.Publish($"generate.message #type:{message.GetType()}]");
+            _metricsPublisher.Publish("message.processed");
         }
     }
 }

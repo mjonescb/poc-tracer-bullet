@@ -1,10 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using poc_synthetic_transaction.Core;
+
 using poc_unity_tracer_bullet.MessageHandler;
+using poc_unity_tracer_bullet.Messages;
 using poc_unity_tracer_bullet.Metrics;
 using poc_unity_tracer_bullet.Queue;
 
@@ -38,12 +41,15 @@ namespace poc_unity_tracer_bullet
                 {
                     var handler = _messageHandlerFactory.Create();
 
-                _metricsPublisher.Publish("read.message");
+                    _metricsPublisher.Publish($"queue.message.received [#tracerbullet:{message.TracerBullet}]");
+                    
+                    handler.Handle(message);
 
-                handler.Handle(message);
+                    _metricsPublisher.Publish("queue.message.handled");
                 }
             }
-            _metricsPublisher.Publish("finished.reading.messages");
+
+            _metricsPublisher.Publish("process.finished");
         }
     }
 }
