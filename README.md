@@ -33,10 +33,12 @@ Data integrity has to be ensured. That means that when a tracer bullet payload i
 ```
 [MetricsPublisher]: process.started
 [MetricsPublisher]: queue.message.received [#tracerbullet:False]
-[MetricsPublisher]: message.processed
-[MetricsPublisher]: queue.message.handled
+[MetricsPublisher]: message.processing.started
+[MetricsPublisher]: message.processing.finished
+[MetricsPublisher]: queue.message.deleted
 [MetricsPublisher]: queue.message.received [#tracerbullet:True]
-[NoopPublisher]: message.processed
-[MetricsPublisher]: queue.message.handled
+[NoopPublisher]: message.processing.started
+[NoopPublisher]: message.processing.finished
+[MetricsPublisher]: queue.message.deleted
 [MetricsPublisher]: process.finished
 ```
