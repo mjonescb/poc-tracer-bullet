@@ -4,26 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using poc_synthetic_transaction.MessageHandler;
-using poc_synthetic_transaction.Metrics;
-using poc_synthetic_transaction.Queue;
+using poc_unity_tracer_bullet.MessageHandler;
+using poc_unity_tracer_bullet.Metrics;
+using poc_unity_tracer_bullet.Queue;
 
-namespace poc_synthetic_transaction
+namespace poc_unity_tracer_bullet
 {
     public class MessageReceiver
     {
         private readonly MessageQueue _messageQueue;
         private readonly IPublishMetrics _metricsPublisher;
-        private readonly IHandleMessages _messageHandler;
+        private readonly MessageHandlerFactory _messageHandlerFactory;
 
         public MessageReceiver(
             MessageQueue messageQueue,
             IPublishMetrics metricsPublisher,
-            IHandleMessages messageHandler)
+            MessageHandlerFactory messageHandlerFactory)
         {
             _messageQueue = messageQueue;
             _metricsPublisher = metricsPublisher;
-            _messageHandler = messageHandler;
+            _messageHandlerFactory = messageHandlerFactory;
         }
 
         public void Run()
@@ -32,8 +32,11 @@ namespace poc_synthetic_transaction
 
             foreach(var message in queue.Receive())
             {
+                var handler = _messageHandlerFactory.Create(tracerBullet: message.TracerBullet);
+
                 _metricsPublisher.Publish("read.message");
-                _messageHandler.Handle(message);
+
+                handler.Handle(message);
             }
             _metricsPublisher.Publish("finished.reading.messages");
         }

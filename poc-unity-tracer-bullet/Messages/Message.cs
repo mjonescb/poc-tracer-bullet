@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace poc_synthetic_transaction.Messages
+namespace poc_unity_tracer_bullet.Messages
 {
     public abstract class Message
     {
-        public bool Real { get; set; }
+        public bool TracerBullet { get; set; }
+
+        public Message(bool tracerBullet) { }
     }
 }

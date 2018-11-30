@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using poc_synthetic_transaction.MessageHandler;
-using poc_synthetic_transaction.Metrics;
-using poc_synthetic_transaction.Queue;
+using poc_unity_tracer_bullet.MessageHandler;
+using poc_unity_tracer_bullet.Metrics;
+using poc_unity_tracer_bullet.Queue;
 
 using Unity;
 
-namespace poc_synthetic_transaction
+namespace poc_unity_tracer_bullet
 {
     class Program
     {
@@ -21,6 +21,7 @@ namespace poc_synthetic_transaction
             unityContainer.RegisterType<MessageQueue>();
             unityContainer.RegisterType<IPublishMetrics, DataDogMetrics>();
             unityContainer.RegisterType<IHandleMessages, ProposalGenerator>();
+            unityContainer.RegisterInstance(unityContainer);
 
             var messageReceiver = unityContainer.Resolve<MessageReceiver>();
             messageReceiver.Run();

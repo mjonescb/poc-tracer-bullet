@@ -8,7 +8,7 @@ using poc_synthetic_transaction.Messages;
 
 namespace poc_synthetic_transaction.MessageHandler
 {
-    public interface IHandleMessages
+    public interface IConstructMessageHandlers
     {
         void Handle(Message message);
     }

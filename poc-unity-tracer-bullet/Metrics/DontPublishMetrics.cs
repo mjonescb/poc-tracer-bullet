@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace poc_synthetic_transaction.Metrics
+namespace poc_unity_tracer_bullet.Metrics
 {
-    public class DataDogMetrics : IPublishMetrics
+    public class DontPublishMetrics : IPublishMetrics
     {
         public void Publish(string metric)
         {
-            Console.WriteLine($"[{nameof(DataDogMetrics)}]: {metric}");
+            Console.WriteLine($"[{this.GetType()}]: {metric}");
         }
     }
 }

@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using poc_synthetic_transaction.Messages;
-using poc_synthetic_transaction.Metrics;
+using poc_unity_tracer_bullet.Messages;
+using poc_unity_tracer_bullet.Metrics;
 
-namespace poc_synthetic_transaction.MessageHandler
+namespace poc_unity_tracer_bullet.MessageHandler
 {
     public class ProposalGenerator : IHandleMessages
     {

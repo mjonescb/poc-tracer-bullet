@@ -48,13 +48,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Global\State.cs" />
+    <Compile Include="MessageHandler\MessageHandlerFactory.cs" />
     <Compile Include="MessageHandler\IHandleMessages.cs" />
     <Compile Include="MessageHandler\ProposalGenerator.cs" />
     <Compile Include="Messages\Message.cs" />
     <Compile Include="Messages\RealMessage.cs" />
-    <Compile Include="Messages\SyntheticMessage.cs" />
+    <Compile Include="Messages\TracerBulletMessage.cs" />
     <Compile Include="Metrics\DataDogMetrics.cs" />
+    <Compile Include="Metrics\DontPublishMetrics.cs" />
     <Compile Include="Metrics\IPublishMetrics.cs" />
     <Compile Include="Metrics\ShouldIPublishMetricsDecorator.cs" />
     <Compile Include="Program.cs" />
