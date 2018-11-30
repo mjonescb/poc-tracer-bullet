@@ -10,6 +10,9 @@ namespace poc_unity_tracer_bullet.Messages
     {
         public bool TracerBullet { get; set; }
 
-        public Message(bool tracerBullet) { }
+        public Message(bool tracerBullet)
+        {
+            TracerBullet = tracerBullet;
+        }
     }
 }
