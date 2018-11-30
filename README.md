@@ -27,3 +27,16 @@ Data integrity has to be ensured. That means that when a tracer bullet payload i
 > Programming-wise, it involves short cycles of development, then delivery and asking the customer if it's closer or further from what they think the target is... rather than finding out right at the end that you've misunderstood something.
 
 [from c2.com](http://wiki.c2.com/?TracerBullets)
+
+# Sample output
+
+```
+[MetricsPublisher]: process.started
+[MetricsPublisher]: queue.message.received [#tracerbullet:False]
+[MetricsPublisher]: message.processed
+[MetricsPublisher]: queue.message.handled
+[MetricsPublisher]: queue.message.received [#tracerbullet:True]
+[NoopPublisher]: message.processed
+[MetricsPublisher]: queue.message.handled
+[MetricsPublisher]: process.finished
+```
