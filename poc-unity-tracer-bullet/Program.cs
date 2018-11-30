@@ -20,7 +20,7 @@ namespace poc_unity_tracer_bullet
 
             unityContainer.RegisterType<MessageQueue>();
             unityContainer.RegisterType<IPublishMetrics, MetricsPublisher>();
-            unityContainer.RegisterType<IHandleMessages, ProposalGenerator>();
+            unityContainer.RegisterType<IHandleMessages, MessageHandler.MessageHandler>();
             unityContainer.RegisterInstance(unityContainer);
 
             var messageReceiver = unityContainer.Resolve<MessageReceiver>();

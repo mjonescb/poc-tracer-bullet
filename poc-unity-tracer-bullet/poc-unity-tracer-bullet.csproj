@@ -51,7 +51,7 @@
     <Compile Include="Core\OperationContext.cs" />
     <Compile Include="MessageHandler\MessageHandlerFactory.cs" />
     <Compile Include="MessageHandler\IHandleMessages.cs" />
-    <Compile Include="MessageHandler\ProposalGenerator.cs" />
+    <Compile Include="MessageHandler\MessageHandler.cs" />
     <Compile Include="Messages\Message.cs" />
     <Compile Include="Messages\RealMessage.cs" />
     <Compile Include="Messages\TracerBulletMessage.cs" />
