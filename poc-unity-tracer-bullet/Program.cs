@@ -19,7 +19,7 @@ namespace poc_unity_tracer_bullet
             var unityContainer = new UnityContainer();
 
             unityContainer.RegisterType<MessageQueue>();
-            unityContainer.RegisterType<IPublishMetrics, DataDogMetrics>();
+            unityContainer.RegisterType<IPublishMetrics, MetricsPublisher>();
             unityContainer.RegisterType<IHandleMessages, ProposalGenerator>();
             unityContainer.RegisterInstance(unityContainer);
 
