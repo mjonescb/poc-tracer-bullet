@@ -45,7 +45,7 @@ namespace poc_unity_tracer_bullet
                     
                     handler.Handle(message);
 
-                    _metricsPublisher.Publish("queue.message.handled");
+                    _metricsPublisher.Publish("queue.message.deleted");
                 }
             }
 
