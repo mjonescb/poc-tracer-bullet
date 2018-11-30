@@ -31,5 +31,4 @@ namespace poc_unity_tracer_bullet.MessageHandler
             return _unityContainer.Resolve<IHandleMessages>();
         }
     }
-
 }
