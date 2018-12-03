@@ -1,20 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using poc_unity_tracer_bullet.Messages;
 
 namespace poc_synthetic_transaction.Core
 {
-    public class OperationContext<T>
+    public class OperationContext
     {
-        private static T _current;
+        public Message Message { get; }
 
-        public static T GetCurrent() => _current;
-
-        public static IDisposable Start(T @object)
+        OperationContext(Message message)
         {
-            _current = @object;
+            Message = message;
+        }
+
+        private static OperationContext _current;
+
+        public static OperationContext GetCurrent() => _current;
+
+        public static IDisposable Start(Message message)
+        {
+            if(_current != null)
+            {
+                throw new InvalidOperationException("You can't do this coz a context is already in scope.");
+            }
+
+            _current = new OperationContext(message);
 
             return new Disposer();
         }
@@ -23,7 +32,7 @@ namespace poc_synthetic_transaction.Core
         {
             public void Dispose()
             {
-                _current = default(T);
+                _current = default(OperationContext);
             }
         }
     }
